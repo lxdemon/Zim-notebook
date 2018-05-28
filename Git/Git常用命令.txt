@@ -1,0 +1,83 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-05-28T16:03:54+08:00
+
+====== Git常用命令 ======
+创建日期 星期一 28 五月 2018
+
+== 从工作区到暂存区: ==
+{{{code: lang="c" linenumbers="True"
+git add xxx.c
+git add .
+git add <dir>
+}}}
+		
+
+== 从暂存区到本地仓库: ==
+{{{code: lang="c" linenumbers="True"
+git commit -m "message"
+git commit --amend -m "message"
+}}}
+	
+
+== 从本地参考到远端仓库: ==
+{{{code: lang="c" linenumbers="True"
+git push
+git push -f
+}}}
+	
+
+== 强制推送(覆盖远端): ==
+{{{code: lang="c" linenumbers="True"
+git push --force
+}}}
+	
+
+== 新建并切换分支： ==
+{{{code: lang="c" linenumbers="True"
+git checkout -b xxxx 
+等价于
+git branch xxxx
+git checkout xxxx
+}}}
+	
+
+== 将xxxx分支内容合并到master： ==
+{{{code: lang="c" linenumbers="True"
+git checkout master
+git merge xxxx
+}}}
+	
+
+== 删除分支: ==
+{{{code: lang="c" linenumbers="True"
+git branch -d xxxx
+git branch -D xxxx				//强制删除
+}}}
+	
+
+== 更新忽略文件： ==
+	编辑.gitignore文件：
+{{{code: lang="c" linenumbers="True"
+RTL8762/Board/EVB/RCU/8650_conexum.si4project/Backup/
+RTL8762/Board/EVB/RCU/8650_conexum.si4project/cache/
+RTL8762/Board/EVB/RCU/Objects/
+RTL8762/Board/EVB/RCU/JLinkLog.txt
+RTL8762/Board/EVB/RCU/JLinkSettings.ini
+}}}
+	
+	若之前已提交到过仓库，则可能无法生效，执行以下命令：
+{{{code: lang="c" linenumbers="True"
+	git rm -r --cached .
+	git add .
+	git commit -m "fixed untracked files"
+}}}
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,50 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-05-28T15:29:52+08:00
+
+====== tar ======
+创建日期 星期一 28 五月 2018
+
+== 必选其中之一参数（而且 一次只能使用其中一个，不能同时使用多个）： ==
+	-c:  建立压缩档案
+	-x：解压
+	-t：查看内容
+	-r：向压缩归档文件末尾追加文件
+	-u：更新原压缩包中的文件
+
+== 可选参数 ==
+	-z：有gzip属性,即需要用 gzip 压缩    
+	-j： 有bz2属性,即需要用 bzip2 压缩    
+	-Z：有compress属性的    
+	-v ：压缩的过程中显示文件(显示所有过程)！这个常用，但不建议用在背景执行过程！    
+	-O：将文件解开到标准输出    
+	-f ： 使用档名，请留意，在 f 之后要立即接档名！不要再加参数！   
+	-p ：使用原文件的原来属性（属性不会依据使用者而变）    
+	-P ：可以使用绝对路径来压缩！    
+	-N ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的文件中！    
+	--exclude FILE：在压缩的过程中，不要将 FILE 打包！      
+	-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。    
+	
+== 查看： ==
+{{{code: lang="c" linenumbers="True"
+tar -tf aaa.tar.gz    	   // 在不解压的情况下查看压缩包的内容
+}}}
+
+
+== 压缩： ==
+{{{code: lang="c" linenumbers="True"
+tar -cf all.tar *.jpg      // 这条命令是将所有.jpg的文件打成一个名为all.tar的包。-c是表示产生新的包，-f指定包的文件名。    
+tar –czf jpg.tar.gz *.jpg  // 将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz    
+tar –cjf jpg.tar.bz2 *.jpg // 将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2 
+}}}
+	
+
+== 解压： ==
+{{{code: lang="c" linenumbers="True"
+tar –xvf file.tar       	// 解压 tar包    
+tar -xzvf file.tar.gz    	// 解压 tar.gz    
+tar -xjvf file.tar.bz2   	// 解压 tar.bz2    
+tar –xZvf file.tar.Z    	// 解压 tar.Z   
+}}}
+	
+	

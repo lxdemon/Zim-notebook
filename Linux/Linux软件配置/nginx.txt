@@ -1,0 +1,84 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-05-28T16:55:57+08:00
+
+====== nginx ======
+创建日期 星期一 28 五月 2018
+
+== 安装（ubuntu）： ==
+{{{code: lang="c" linenumbers="True"
+apt-get install nginx
+}}}
+	
+
+== 配置： ==
+{{{code: lang="c" linenumbers="True"
+cd /etc/nginx/
+vim nginx.conf
+}}}
+
+{{{code: lang="python" linenumbers="True"
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+	worker_connections  1024;
+}
+
+http {
+	include       mime.types;
+	default_type  application/octet-stream;
+
+	sendfile        on;
+	#tcp_nopush     on;
+
+	#keepalive_timeout  0;
+	keepalive_timeout  65;
+
+	server {
+		listen       80;
+		server_name  localhost 52zdw.xin www.52zdw.xin;
+
+		location / {
+			root /home/workspace/wechat;
+			index form.html;
+		}
+
+		#error_page  404              /404.html;
+
+		# redirect server error pages to the static page /50x.html
+		#
+		error_page   500 502 503 504  /50x.html;
+		location = /50x.html {
+			root   html;
+		}
+
+	}
+
+	server {
+		listen       5000;
+		server_name  localhost 52zdw.xin www.52zdw.xin;
+
+		location / {
+			root /home/workspace/wechat;
+			index home.html;
+		}
+	}
+}
+}}}
+
+
+== 重新加载配置文件： ==
+{{{code: lang="c" linenumbers="True"
+nginx -s reload
+}}}
+
+
+
+
+
